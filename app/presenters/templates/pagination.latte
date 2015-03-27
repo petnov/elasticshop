@@ -1,0 +1,26 @@
+			{if $paginator->pageCount > 1}
+					<nav>
+					  <ul class="pagination pagination-sm">
+						<li{if $paginator->first} class="disabled"{/if}>
+							{var $userFilters['page'] => $paginator->page-1}
+							<a href="{link this (expand) $userFilters}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						{for $i = 1; $i <= $paginator->pageCount; $i++}
+						    
+						    <li{if $paginator->page == $i} class="active"{/if}> 
+						    	{var $userFilters['page'] => $i}
+						    	<a href="{link this (expand) $userFilters}">{$i} {if $paginator->page == $i}<span class="sr-only">(current)</span>{/if}</a>
+						    </li>
+					    {/for}
+					    
+					    <li{if $paginator->last} class="disabled"{/if}>
+					    	{var $userFilters['page'] => $paginator->page+1}
+							<a href="{link this (expand) $userFilters}" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+      						</a>
+						</li>
+					  </ul>
+					</nav>
+			{/if}

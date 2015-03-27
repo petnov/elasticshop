@@ -1,0 +1,43 @@
+
+
+				{if isset($products['facets']) && $presenter->name != 'Homepage'}
+                
+                {var $trans = ['price' => 'Cena', 'brand' => 'Značka']}
+                {foreach $trans as $transKey => $transValue}
+                	{if !isset($userFilters[$transKey])}
+                		{var $userFilters[$transKey] = null}
+                	{/if}
+                {/foreach}
+                <div class="list-group">
+                	<form>
+                	{foreach $products['facets'] as $facetId => $facet}
+						{if (isset($facet['buckets']) && count($facet['buckets']) > 1) || !isset($facet['buckets'])}
+						<h3>{$trans[$facetId]}</h3>   
+						<div class="row">
+							{if isset($facet['buckets'])}
+								<p class="col-xs-10">
+								{if $facetId == 'price'}
+									{foreach $facet['buckets'] as $key => $bucket}
+										{if !$iterator->last}
+											<a href="{link this price => $bucket['key'] . '-' . $facet['buckets'][$key+1]['key'], brand => $userFilters['brand'], page => 1}">Do {$facet['buckets'][$key+1]['key']} Kč</a> - {$bucket['doc_count']}x
+										{else}
+											<a href="{link this price => $bucket['key'], brand => $userFilters['brand'], page => 1}">Do {$bucket['key']} Kč</a> - {$bucket['doc_count']}x
+										{/if}
+										{sep}<br>{/sep}
+									{/foreach}
+								{else}
+									{foreach $facet['buckets'] as $key => $bucket}
+										<a href="{link this $facetId => $bucket['key'], price => $userFilters['price'], page => 1}">{$bucket['key']}</a> - {$bucket['doc_count']}x<br>
+									{/foreach}
+								{/if}
+								</p>
+							{/if}
+							
+						</div>
+						   {/if}         	
+                	{/foreach}
+                	</form>
+                </div>
+    
+            {/if}
+            

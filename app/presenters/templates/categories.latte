@@ -1,0 +1,18 @@
+
+            <div class="col-md-3">
+                        
+                <p class="lead">Kategorie</p>
+                <div class="list-group">
+                	<ul class="nav nav-pills nav-stacked">
+                	{foreach $categories as $cat}
+                	<li{ifCurrent Category:default categoryId => $cat['id']} class="active"{/ifCurrent}>
+	                    <a href="{link Category:default categoryId => $cat['id']}" class="list-group-item">{$cat['title']}</a>
+                    </li>
+                    {/foreach}
+                    </ul>
+                </div>
+                
+                {include facets.latte}
+                
+            </div>
+            

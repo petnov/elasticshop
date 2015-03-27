@@ -1,0 +1,25 @@
+
+                <div class="row">
+                
+					{foreach $products['products'] as $product}
+                    <div class="col-sm-4 col-lg-4 col-md-4 product-box">
+                        <div class="thumbnail">
+                        	<div class="image">
+                            	<img src="https://i.cdn.nrholding.net/{$product['image_id']}/200/150" alt="">
+                            </div>
+                            <div class="caption">
+                                <h4 class="pull-right">{$product['price']} Kč</h4>
+                                <h4 class="title"><a href="#">{$product['title']}</a>
+                                </h4>
+                                <p>
+                                	{$product['description']|truncate:100}
+                                </p>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+					{/foreach}
+                    
+                   
+                </div>

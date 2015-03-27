@@ -1,0 +1,38 @@
+{block content}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            {include ../categories.latte}
+            
+            <div class="col-md-9">
+				<h1 class="pull-left">
+					{$category['title']}
+					{if $userFilters}
+						- 
+						{foreach $userFilters as $filterKey => $value}
+							{$value}{if $filterKey == 'price'} Kč{/if}{sep}, {/sep}
+						{/foreach}
+					{/if}
+				
+				</h1>
+			</div>
+			
+			<div class="col-md-9">
+				<h5><span>Celkem produktů: {$products['total']}</span></h5>
+			</div>
+                
+            <div class="col-md-9">
+				{include ../pagination.latte}
+
+                {include ../productList.latte}
+                
+				{include ../pagination.latte}
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
